@@ -1,6 +1,6 @@
 # DuckDB-Wasm experimental deployment
 
-Live demo: https://duckdb.github.io/duckdb-wasm-wip/
+Live demo: https://shellwip.duckdb.org/
 
 This is an experimental deployment of [duckdb-wasm](https://github.com/duckdb/duckdb-wasm)'s shell that enables extension loading.
 
