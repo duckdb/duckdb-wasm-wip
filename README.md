@@ -2,6 +2,8 @@
 
 Live demo: https://shellwip.duckdb.org/
 
+Trackig issue: https://github.com/duckdb/duckdb-wasm/issues/1202
+
 This is an experimental deployment of [duckdb-wasm](https://github.com/duckdb/duckdb-wasm)'s shell that enables extension loading.
 
 Main idea is allow testing with this feature to be able to collect feedback.
