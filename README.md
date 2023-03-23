@@ -6,10 +6,11 @@ This is an experimental deployment of [duckdb-wasm](https://github.com/duckdb/du
 
 Main idea is allow testing with this feature to be able to collect feedback.
 
-Note that in this experiment NO extension are pre-loaded at start-up, so "LOAD parquet;" is for example needed to allow accessing Parquet files.
+## Featured: Extension Loading
+Extension are currently build-in duckdb-wasm package, but that's it's not scalable and do not allows flexible deployments.
+[Duckdb extensions](https://duckdb.org/docs/extensions/overview) are a powerful way to deliver opt-in featues, and the idea is experimenting with this to allow bringing that also to duckdb-wasm.
 
-## Missing
-INSTALL is currently a no-op, there is no registeration of extensions, extension signing currently disabled.
+To stress test extension loading, in the current [shellwip](https://shellwip.duckdb.org/)  NO extension are pre-loaded at start-up, so "LOAD parquet;" is for example needed to allow accessing Parquet files.
 
 ## Basics
 ```
@@ -28,6 +29,15 @@ duckdb> set Calendar = 'gregorian';
 ┌┐
 └┘
 ```
+or from a (CORS-)reachable URL:
+```
+duckdb> LOAD "https://raw.githubusercontent.com/duckdb/duckdb-wasm-wip/main/static/assets/eh/extensions/json.extension.wasm";
+┌┐
+└┘
+
+```
+
+For a given setup (eg. mvp or eh), each extension is delivered as a single WebAssembly file with a custom dynlink section that provides relocation informations. Providing a full path means fetching the extension from there, while providing a short name would look up extension in the extensions folder in the local deployment.
 
 ## Support table
 |name|mantainer|situation|notes|
@@ -49,7 +59,32 @@ duckdb> set Calendar = 'gregorian';
 |sqlite_scanner|🦆|⚙️| |
 |substrait|🦆|⚙️| |
 
-Each extension is delivered a WebAssembly file with a custom dynlink section that provides relocation informations.
+🌳 = in-tree, 🦆 = DuckDB Labs, 🚧 = known problems, ⛔ = blocked
+
+⚙️ = compiles, no real test have been performed
+✅ = compiles AND seems to work
+
+If you happen to experiment with a given ⚙️-extension, please send a PR adding relevant comments or movign to ✅.
+
+## Missing
+INSTALL is currently a no-op, and consequently there is no registeration of extensions.
+
+Wasm extension signing is currently disabled.
+
+Exposing extension API to JavaScript API, to allow loading at start-up of a given set of extensions.
+
+JavaScript API to register where extensions should be looked up.
+
+While providing an URL, the right one has to be provided for a given bundle (eh or mvp), we haven't settled yet for a naming-schema that allow to provide bundle compatible URLs.
+
+Documentation and instructions.
+
+## Extension developer?
+Creating extensions currently requires using a recent Emscripten providing specific linking time flags (`-fPIC -fSIDE_MODULE`), and the current target are C/C++ extensions.
+
+Documentation is coming on how to compile your own extensions!
+
+You developed a Rust extension? There are (sketchy) plans on how to make possible, but do get in touch.
 
 ## What's next
 The idea for this phase is trying things out and collecting feedback, while working on making this available (opt-in at first) in main duckdb-wasm.
