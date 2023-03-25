@@ -46,7 +46,7 @@ For a given setup (eg. mvp or eh), each extension is delivered as a single WebAs
 |:----|:----|:----|:----|
 |excel|🌳|⚙️| |
 |fts|🌳|⚙️| |
-|httpfs|🌳|🚧|compiles with minor modifycations, but it's expect to be broken|
+|httpfs|🌳|🚧|S3 functionality broken: https://github.com/duckdb/duckdb-wasm/issues/1207|
 |icu|🌳|⚙️| |
 |inet|🌳|⚙️| |
 |jemalloc|🌳|⛔|compilation fails|
@@ -58,7 +58,7 @@ For a given setup (eg. mvp or eh), each extension is delivered as a single WebAs
 |visualizer|🌳|⚙️| |
 |quack|🦆|✅|works!|
 |postgres_scanner|🦆|⚙️| |
-|sqlite_scanner|🦆|⚙️| |
+|sqlite_scanner|🦆|🚧|core functionality missing: https://github.com/duckdb/duckdb-wasm/issues/1213|
 |substrait|🦆|⚙️| |
 
 🌳 = in-tree, 🦆 = DuckDB Labs, 🚧 = known problems, ⛔ = blocked
