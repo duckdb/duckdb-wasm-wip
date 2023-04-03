@@ -50,7 +50,7 @@ For a given setup (eg. mvp or eh), each extension is delivered as a single WebAs
 |icu|🌳|⚙️| |
 |inet|🌳|⚙️| |
 |jemalloc|🌳|⛔|compilation fails|
-|json|🌳|⚙️| |
+|json|🌳|✅|works, improvement on current status, https://github.com/duckdb/duckdb-wasm/discussions/1228|
 |parquet|🌳|⚙️| |
 |sqlsmith|🌳|⚙️| |
 |tpcds|🌳|⚙️| |
