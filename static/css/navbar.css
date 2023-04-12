@@ -27,7 +27,7 @@
          position: relative;
          display: grid;
          grid-template-rows: 100%;
-         grid-template-columns: var(--nav_bar_width) 10px calc(100% - 10px - var(--nav_bar_width));
+         grid-template-columns: var(--nav_bar_width) calc(100% - var(--nav_bar_width));
     }
      .level2 {
          background-color: var(--nav_bar_bg);
@@ -40,7 +40,7 @@
     }
      .submenu {
          display: grid;
-         grid-template-rows: repeat(5, 48px);
+         grid-template-rows: 8px 48px 48px auto 48px 48px 8px;
          grid-template-columns: 100%;
     }
 }
@@ -48,7 +48,7 @@
      .level1 {
          position: relative;
          display: grid;
-         grid-template-rows: var(--nav_bar_width) 10px calc(100% - 10px - var(--nav_bar_width));
+         grid-template-rows: var(--nav_bar_width) calc(100% - var(--nav_bar_width));
          grid-template-columns: 100%;
     }
      .level2 {
@@ -63,8 +63,9 @@
     }
      .submenu {
          display: grid;
-         grid-template-columns: 28px repeat(4, 56px) 28px;
+         grid-template-columns: 8px 48px 48px auto 48px 48px 8px;
          grid-template-rows: 100%;
+         width: 100%;
     }
 }
  .submenu_item {
