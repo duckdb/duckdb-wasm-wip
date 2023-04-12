@@ -1,6 +1,6 @@
 # DuckDB-Wasm experimental deployment
 
-Live demo: https://shellwip.duckdb.org/
+Live deployment: https://shellwip.duckdb.org/
 
 Trackig issue: https://github.com/duckdb/duckdb-wasm/issues/1202
 
@@ -39,27 +39,28 @@ duckdb> LOAD "https://raw.githubusercontent.com/duckdb/duckdb-wasm-wip/main/stat
 
 ```
 
-For a given setup (eg. mvp or eh), each extension is delivered as a single WebAssembly file with a custom dynlink section that provides relocation informations. Providing a full path means fetching the extension from there, while providing a short name would look up extension in the extensions folder in the local deployment.
+Each extension is delivered as a single WebAssembly file with a custom dynlink section that provides relocation informations. Providing a full path means fetching the extension from there, while providing a short name would look up extension in the extensions folder in the local deployment.
 
 ## Support table
-|name|mantainer|situation|notes|
-|:----|:----|:----|:----|
-|excel|🌳|⚙️| |
-|fts|🌳|⚙️| |
-|httpfs|🌳|🚧|S3 functionality broken: https://github.com/duckdb/duckdb-wasm/issues/1207|
-|icu|🌳|⚙️| |
-|inet|🌳|⚙️| |
-|jemalloc|🌳|⛔|compilation fails|
-|json|🌳|✅|works, improvement on current status, https://github.com/duckdb/duckdb-wasm/discussions/1228|
-|parquet|🌳|⚙️| |
-|sqlsmith|🌳|⚙️| |
-|tpcds|🌳|⚙️| |
-|tpch|🌳|⚙️| |
-|visualizer|🌳|⚙️| |
-|quack|🦆|✅|works!|
-|postgres_scanner|🦆|⚙️| |
-|sqlite_scanner|🦆|🚧|core functionality missing: https://github.com/duckdb/duckdb-wasm/issues/1213|
-|substrait|🦆|⚙️| |
+|name|deployed|mantainer|situation|notes|
+|:----|:----|:----|:----|:----|
+|excel|X|🌳|⚙️| |
+|fts|X|🌳|⚙️| |
+|icu|X|🌳|✅| |
+|inet|X|🌳|⚙️| |
+|json|X|🌳|✅|works, improvement on current status, https://github.com/duckdb/duckdb-wasm/discussions/1228|
+|parquet|X|🌳|⚙️| |
+|tpcds|X|🌳|⚙️| |
+|tpch|X|🌳|⚙️| |
+|spatial|X|🦆|⚙️| |
+|httpfs| |🌳|🚧|S3 functionality broken: https://github.com/duckdb/duckdb-wasm/issues/1207|
+|jemalloc| |🌳|⛔|compilation fails|
+|sqlsmith| |🌳|⚙️| |
+|visualizer| |🌳|⚙️| |
+|quack| |🦆|✅|works!|
+|postgres_scanner| |🦆|⚙️| |
+|sqlite_scanner| |🦆|🚧|core functionality missing: https://github.com/duckdb/duckdb-wasm/issues/1213|
+|substrait| |🦆|⚙️| |
 
 🌳 = in-tree, 🦆 = DuckDB Labs, 🚧 = known problems, ⛔ = blocked
 
@@ -68,9 +69,10 @@ For a given setup (eg. mvp or eh), each extension is delivered as a single WebAs
 
 If you happen to experiment with a given ⚙️-extension, please send a PR adding relevant comments or movign to ✅.
 
-## Missing
-INSTALL is currently a no-op, and consequently there is no registeration of extensions.
+## Differences with DuckDB's CLI
+INSTALL is a no-op and unchecked.
 
+## Missing
 Wasm extension signing is currently disabled.
 
 Exposing extension API to JavaScript API, to allow loading at start-up of a given set of extensions.
